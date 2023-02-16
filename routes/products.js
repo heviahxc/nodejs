@@ -1,56 +1,27 @@
 const express = require('express');
-const faker = require('faker');
+const {productsServices} = require('../services/servicesProducts')
 const router = express.Router();
 
 router.get('/', (req,res)=>{
-    const products = [];
-    const {size} = req.query
-    const limit = size ?? 5
-    for (let index = 0; index < limit; index++) {
-        products.push({
-            name:faker.commerce.productName(),
-            price:parseInt(faker.commerce.price(), 10),
-            image:faker.image.imageUrl()
-        })
-        
-    }
+    const products = productsServices.getAllProducts(req,res);
     res.json(products)
 });
 
 router.post('/', (req,res)=>{
-    const body = req.body;
-    res.json({
-        ok:true,
-        data:body
-    })
+    productsServices.createnewProduct(req,res)
 });
 
 router.patch('/:id', (req,res)=>{
-    const {id} = req.params
-    const body = req.body
-    res.json({
-            message:'success',
-            products:body,
-            id
-    })
+   const updateProduct = productsServices.updateProduct(req,res)
+   res.json(updateProduct)
 });
 
 router.delete('/:id', (req,res)=>{
-    const {id} = req.params
-    res.json({
-        message:'delete',
-        id
-    })
+   productsServices.deleteServices(req,res)
 });
 
 router.get('/:id',(req,res) => {
-    const {id} = req.params;
-    res.json({
-        'id': id,
-        'name': 'teclado',
-        'price': 2000,
-        'category': 'tecnology'
-    })
+   productsServices.getOneProduct(req,res)
 });
 
 module.exports = router;
