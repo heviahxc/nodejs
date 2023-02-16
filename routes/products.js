@@ -15,7 +15,15 @@ router.get('/', (req,res)=>{
         
     }
     res.json(products)
-})
+});
+
+router.post('/', (req,res)=>{
+    const body = req.body;
+    res.json({
+        ok:true,
+        data:body
+    })
+});
 
 
 router.get('/:id',(req,res) => {
@@ -27,5 +35,6 @@ router.get('/:id',(req,res) => {
         'category': 'tecnology'
     })
 });
+
 
 module.exports = router;
