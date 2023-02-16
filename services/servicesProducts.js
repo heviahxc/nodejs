@@ -2,54 +2,78 @@ const faker = require('faker');
 
 const getAllProducts = (req, res)=>{
     const products = [];
-    const {size} = req.query
-    const limit = size ?? 5
-    for (let index = 0; index < limit; index++) {
-        products.push({
-            name:faker.commerce.productName(),
-            price:parseInt(faker.commerce.price(), 10),
-            image:faker.image.imageUrl()
-        })
+    try {
+       
+        const {size} = req.query
+        const limit = size ?? 5
+        for (let index = 0; index < limit; index++) {
+            products.push({
+                name:faker.commerce.productName(),
+                price:parseInt(faker.commerce.price(), 10),
+                image:faker.image.imageUrl()
+            })
+            
+        }
         
+    } catch (error) {
+        console.log(error)
     }
     return products
 }
 
 const createnewProduct = (req,res)=>{
-    const body = req.body;
-    res.json({
-        ok:true,
-        data:body
-    })
+    try {
+        const body = req.body;
+        res.json({
+            ok:true,
+            data:body
+        })
+    } catch (error) {
+        console.log(error)
+    }
+   
 
 }
 
 const updateProduct = (req,res)=>{
-    const {id} = req.params
+    try {
+        const {id} = req.params
     const body = req.body
     res.json({
             message:'success',
             products:body,
             id
     })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 const deleteProduct = (req,res)=>{
-    const {id} = req.params
-    res.json({
-        message:'delete',
-        id
-    })
+    try {
+        const {id} = req.params
+        res.json({
+            message:'delete',
+            id
+        })
+    } catch (error) {
+        console.log(error)
+    }
+   
 }
 
 const getOneProduct = (req,res)=>{
-    const {id} = req.params;
+    try {
+        const {id} = req.params;
     res.json({
         'id': id,
         'name': 'teclado',
         'price': 2000,
         'category': 'tecnology'
     })
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 
