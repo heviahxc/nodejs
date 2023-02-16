@@ -1,4 +1,6 @@
 const express = require('express');
+const { errorLogs, handlerError } = require('./middlewares/error.handler');
+const validatorHandler = require('./middlewares/validator.handler');
 const apiRouter = require('./server');
 const app = express();
 const port = 3000;
@@ -10,6 +12,12 @@ app.get('/',(req,res) => {
 });
 
 apiRouter(app);
+
+
+//errores
+app.use(handlerError)
+app.use(errorLogs)
+app.use(validatorHandler);
 
 
 app.listen(port,(req,res)=>{

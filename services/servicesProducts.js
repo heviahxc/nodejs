@@ -1,5 +1,5 @@
 const faker = require('faker');
-
+const boom = require('@hapi/boom');
 const getAllProducts = (req, res)=>{
     const products = [];
     try {
