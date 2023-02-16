@@ -25,6 +25,23 @@ router.post('/', (req,res)=>{
     })
 });
 
+router.patch('/:id', (req,res)=>{
+    const {id} = req.params
+    const body = req.body
+    res.json({
+            message:'success',
+            products:body,
+            id
+    })
+});
+
+router.delete('/:id', (req,res)=>{
+    const {id} = req.params
+    res.json({
+        message:'delete',
+        id
+    })
+});
 
 router.get('/:id',(req,res) => {
     const {id} = req.params;
@@ -35,6 +52,5 @@ router.get('/:id',(req,res) => {
         'category': 'tecnology'
     })
 });
-
 
 module.exports = router;
