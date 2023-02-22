@@ -1,14 +1,16 @@
 const express = require('express');
+const cors = require('cors');
 const { errorLogs, handlerError } = require('./middlewares/error.handler');
 const validatorHandler = require('./middlewares/validator.handler');
 const apiRouter = require('./server');
 const app = express();
 const port = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 app.get('/',(req,res) => {
-    res.send('hola mundo desde ruta raiz')
+    res.send('hola mundo')
 });
 
 apiRouter(app);
